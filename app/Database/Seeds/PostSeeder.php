@@ -9,7 +9,7 @@ class PostSeeder extends Seeder
 	public function run()
 	{
 			$model = model('PostModel');
-			$kategori = ['beach','music','weather','film','animal','nature'];
+			$kategori = ['nature','programming','cat','sport','lifestyle','food'];
 			for ($i=0;$i<6;$i++){
 			$model->insert([
 					'judul'      => static::faker()->sentence(3),

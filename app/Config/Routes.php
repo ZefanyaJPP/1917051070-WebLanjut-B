@@ -32,33 +32,36 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', function () {
+$routes->get('/', function(){
 	$data = [
-		'title' => "Blog - Home"
+		"tittle" => "Blog - Home",
 	];
-	echo view ('layouts/header',$data);
-	echo view ('layouts/navbar');
-    echo view ('v_home');
-    echo view ('layouts/footer');
+	echo view('layouts/header', $data);
+	echo view('layouts/navbar');
+	echo view('v_home');
+	echo view('layouts/footer');
 });
-
-$routes->get('/register','templating::register');
-$routes->post('/saveRegister','templating::saveRegister');
-$routes->get('/posts', 'PostController::index');
-
-$routes->get('/about', function (){
+$routes->get('/admin','Templating::index');
+$routes->get('/admin/post','AdminPostsController::index');
+$routes->get('/admin/post/create','AdminPostsController::create');
+$routes->post('/admin/post/store','AdminPostsController::store');
+$routes->get('/admin/post/delete/(:segment)','AdminPostsController::delete/$1');
+$routes->get('/admin/post/edit/(:segment)','AdminPostsController::edit/$1');
+$routes->post('/admin/post/update/(:segment)','AdminPostsController::update/$1');
+$routes->get('/register','Register::register');
+$routes->post('/saveRegister','Register::saveRegister');
+// $routes->get('/biodata/(:alpha)/(:num)','Biodata::fungsiBaru/$1/$2');
+$routes->get('/post', 'PostController::index');
+$routes->get('/about' ,function(){
 	$data = [
-		'title' => "Blog - About"
+		"tittle" => "Blog - About",
 	];
-	echo view ('layouts/header',$data);
-	echo view ('layouts/navbar');
-    echo view ('v_about');
-    echo view ('layouts/footer');
+	echo view('layouts/header',$data);
+	echo view('layouts/navbar');
+	echo view('v_about');
+	echo view('layouts/footer');
 });
-$routes->get('/admin','templating::index');
-$routes->get('/admin/posts', 'AdminPostsController::index');
-$routes->get('/admin/posts/create', 'AdminPostsController::create');
-$routes->post('/admin/posts/store','AdminPostsController::store');
+// $routes->get('/', 'Home::show');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
